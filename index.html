@@ -2,16 +2,47 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Downloads</title>
+  <title>Meine Webseite</title>
 </head>
 <body>
-  <h1>Downloads</h1>
-  <div class="downloads">
-    <!-- Hier können Sie Downloads hinzufügen -->
-    TEST
-  </div>
-  <div class="counter">
-    <p>Besucherzähler: <span id="visitorCount">0</span></p>
-  </div>
+  <header>
+    <h1>Meine Webseite</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#services">Dienstleistungen</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="about">
+      <h2>Über uns</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+    </section>
+    <section id="services">
+      <h2>Dienstleistungen</h2>
+      <ul>
+        <li>Service 1</li>
+        <li>Service 2</li>
+        <li>Service 3</li>
+      </ul>
+    </section>
+    <section id="contact">
+      <h2>Kontakt</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Nachricht:</label>
+        <textarea id="message" name="message"></textarea><br><br>
+        <button type="submit">Senden</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright &copy; 2023 Meine Webseite</p>
+  </footer>
 </body>
 </html>

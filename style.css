@@ -10,22 +10,6 @@ header {
   text-align: center;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin: 0 10px;
-}
-
 main {
   padding: 20px;
   text-align: left;

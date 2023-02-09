@@ -27,18 +27,13 @@ nav li {
 }
 
 main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   padding: 20px;
+  text-align: left;
 }
 
 section {
-  background-color: lightblue;
-  margin: 20px;
+  margin: 20px 0;
   padding: 20px;
-  width: 300px;
-  text-align: center;
 }
 
 footer {

@@ -22,13 +22,17 @@
   
   <main>
     <section>
-      <label for="projekt">Projekt:</label><br>
-      <DROWPDOWN><p>
-        
-      <label for="titel">Titel:</label><br>
+      <label for="projekt">Projekt:</label> 
+      <select id="projekt" name="projekt">
+        <option value="konsolidierung">Konsolidierung der Infrastruktur</option>
+        <option value="relaunchWebseite">Relaunch Webseite</option>
+        <option value="expansionFirma<">Blau</option>
+      </select><p>
+
+      <label for="titel">Titel:</label> 
       <input type="text" id="titel" name="titel"><p>
         
-      <label for="mitarbeiter">Mitarbeiter:</label><br>
+      <label for="mitarbeiter">Mitarbeiter:</label> 
       <form>
         <ul>
           <li>
@@ -53,15 +57,15 @@
           </li>
         </ul>
 
-      <label for="priority">Priorität:</label><br>
+      <label for="priority">Priorität:</label> 
       <select id="priority" name="priority">
-        <option> value="sehrWichtig">Sehr Wichtig</option>
-        <option> value="wichtig">Wichtig</option>
-        <option> value="normal">Normal</option>
-        <option> value="niedrig">Niedrig</option>
+        <option value="sehrWichtig">Sehr Wichtig</option>
+        <option value="wichtig">Wichtig</option>
+        <option value="normal">Normal</option>
+        <option value="niedrig">Niedrig</option>
       </select>
         
-      <label for="datum">Fällig bis:</label><br>
+      <label for="datum">Fällig bis:</label> 
       <input type="datum" id="datum" name="datum"><p>
 
     </section>

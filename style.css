@@ -1,30 +1,5 @@
-body {
+#login {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: lightgray;
+  align: center;
   padding: 20px;
-  text-align: center;
-}
-
-main {
-  padding: 20px;
-  text-align: left;
-}
-
-section {
-  margin: 20px 0;
-  padding: 20px;
-}
-
-footer {
-  background-color: lightgray;
-  padding: 20px;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }

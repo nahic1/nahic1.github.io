@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const header = document.querySelector('header');
-    header.style.opacity = '0';
-    header.style.transition = 'opacity 1s';
-
-    setTimeout(() => {
-        header.style.opacity = '1';
-    }, 100);
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Verhindert das Standard-Submit-Verhalten
+        alert("Danke für deine Nachricht!");
+    });
 });

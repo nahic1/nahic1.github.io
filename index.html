@@ -3,33 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einfaches Portfolio</title>
+    <title>Portfolio von [Dein Name] - Synchronsprecher</title>
     <link rel="stylesheet" href="docs/styles.css">
 </head>
 <body>
     <header>
-        <h1>Willkommen zu meinem Portfolio</h1>
         <nav>
+            <div class="logo">[Dein Logo]</div>
             <ul>
                 <li><a href="#about">Über mich</a></li>
                 <li><a href="#services">Dienstleistungen</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
+        <div class="hero">
+            <h1>Willkommen bei [Dein Name]</h1>
+            <p>Professioneller Synchronsprecher für Film, Werbung und mehr.</p>
+            <a href="#contact" class="cta-button">Jetzt Kontakt aufnehmen</a>
+        </div>
     </header>
 
     <section id="about">
         <h2>Über mich</h2>
-        <p>Hier kannst du eine kurze Beschreibung über dich und deine Arbeit hinzufügen.</p>
+        <p>Ich bin ein erfahrener Synchronsprecher mit einer klaren und vielseitigen Stimme. Ich habe in verschiedenen Projekten gearbeitet, von Filmen bis hin zu Werbespots.</p>
+        <img src="docs/images/profile.jpg" alt="Profilbild von [Dein Name]">
     </section>
 
     <section id="services">
         <h2>Meine Dienstleistungen</h2>
-        <ul>
-            <li>Dienstleistung 1</li>
-            <li>Dienstleistung 2</li>
-            <li>Dienstleistung 3</li>
-        </ul>
+        <div class="services-grid">
+            <div class="service">
+                <img src="docs/images/service1.jpg" alt="Dienstleistung 1">
+                <h3>Werbung</h3>
+                <p>Professionelle Sprachaufnahme für Werbung.</p>
+            </div>
+            <div class="service">
+                <img src="docs/images/service2.jpg" alt="Dienstleistung 2">
+                <h3>Film-Synchronisation</h3>
+                <p>Synchronisation für Filme und Serien.</p>
+            </div>
+            <div class="service">
+                <img src="docs/images/service3.jpg" alt="Dienstleistung 3">
+                <h3>Hörbücher</h3>
+                <p>Vertonung von Hörbüchern und Erzählungen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Mein Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <h3>Projekt 1</h3>
+                <p>Kurze Beschreibung des Projekts.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Projekt 2</h3>
+                <p>Kurze Beschreibung des Projekts.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Projekt 3</h3>
+                <p>Kurze Beschreibung des Projekts.</p>
+            </div>
+        </div>
     </section>
 
     <footer id="contact">
@@ -43,7 +80,7 @@
             <textarea id="message" required></textarea>
             <button type="submit">Absenden</button>
         </form>
-        <p>&copy; 2024 Dein Name. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2024 [Dein Name]. Alle Rechte vorbehalten.</p>
     </footer>
 
     <script src="docs/script.js"></script>

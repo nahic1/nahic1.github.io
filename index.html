@@ -150,6 +150,41 @@
             transition: width 0.1s linear;
         }
 
+        .about {
+            padding: 8rem 5%;
+            background: var(--primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.3);
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(248,250,252,0.9);
+        }
+
+        .bio-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
         .play-btn {
             position: absolute;
             left: 1rem;
@@ -218,6 +253,16 @@
             .contact-links {
                 flex-direction: column;
             }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -269,6 +314,34 @@
             </div>
         </div>
     </section>
+
+    <section class="about" id="about">
+        <div class="about-grid">
+            <img src="profil.jpg" alt="Profilbild" class="profile-image">
+            <div class="bio">
+                <h2 class="section-title">Über mich</h2>
+                <div class="bio-text">
+                    <p>
+                        Als <span class="bio-highlight">professioneller Sprecher</span> mit über 10 Jahren Erfahrung 
+                        habe ich an mehr als 500 Projekten mitgewirkt. Meine Stimme ist in 
+                        <span class="bio-highlight">Werbespots</span>, <span class="bio-highlight">Hörbüchern</span> 
+                        und <span class="bio-highlight">Dokumentationen</span> zu hören.
+                    </p>
+                    <p>
+                        Ausgebildet an der <span class="bio-highlight">Hochschule für Schauspielkunst</span> in Berlin, 
+                        kombiniere ich technische Präzision mit künstlerischem Ausdruck. Meine Stärken liegen in der 
+                        <span class="bio-highlight">dynamischen Moderation</span> und der 
+                        <span class="bio-highlight">charakterstarken Interpretation</span> von Texten.
+                    </p>
+                    <p>
+                        Neben meiner Arbeit im Studio engagiere ich mich auch als 
+                        <span class="bio-highlight">Sprechcoach</span> und gebe Workshops für angehende Sprecher.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <section class="contact" id="contact">
         <h2 class="section-title">Kontakt</h2>

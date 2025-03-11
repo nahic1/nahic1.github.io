@@ -113,6 +113,14 @@
             overflow: hidden;
         }
 
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .audio-carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
@@ -121,14 +129,19 @@
         }
 
         .audio-item {
-            flex: 0 0 calc(33.333% - 1.5rem);
-            min-width: 300px;
-            margin: 0 0.75rem;
             background: var(--primary);
             border-radius: 12px;
             padding: 2rem;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(249,115,22,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .audio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .audio-item:hover {
@@ -166,33 +179,7 @@
             transform: translateY(-50%);
             color: var(--text);
         }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(249,115,22,0.3);
-            border: none;
-            color: var(--text);
-            padding: 1rem;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-nav:hover {
-            background: var(--accent);
-        }
-
-        .carousel-prev {
-            left: 1rem;
-        }
-
-        .carousel-next {
-            right: 1rem;
-        }
-
+        
         /* About Section */
         .about {
             padding: 8rem 5%;
@@ -413,43 +400,38 @@
 
     <section class="portfolio" id="portfolio">
         <h2 class="section-title">Audiobeispiele</h2>
-        <div class="portfolio-container">
-            <button class="carousel-nav carousel-prev">❮</button>
-            <button class="carousel-nav carousel-next">❯</button>
-            
-            <div class="audio-carousel">
-                <!-- Audio-Item 1 -->
-                <div class="audio-item">
-                    <h3>Werbespot | Mode</h3>
-                    <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
-                    <div class="custom-player" data-audio="werbung.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
+        <div class="audio-grid">
+            <!-- Audio-Item 1 -->
+            <div class="audio-item">
+                <h3>Werbespot | Mode</h3>
+                <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
+                <div class="custom-player" data-audio="werbung.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
                 </div>
-
-                <!-- Audio-Item 2 -->
-                <div class="audio-item">
-                    <h3>E-Learning | Technik</h3>
-                    <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
-                    <div class="custom-player" data-audio="elearning.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
-                </div>
-
-                <!-- Audio-Item 3 -->
-                <div class="audio-item">
-                    <h3>Hörspiel | Fantasy</h3>
-                    <p class="audio-description">Atmosphärische Charakterstimmen</p>
-                    <div class="custom-player" data-audio="hoerspiel.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
-                </div>
-
-                <!-- Weitere Audio-Items hier einfügen -->
             </div>
+
+            <!-- Audio-Item 2 -->
+            <div class="audio-item">
+                <h3>E-Learning | Technik</h3>
+                <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
+                <div class="custom-player" data-audio="elearning.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
+                </div>
+            </div>
+
+            <!-- Audio-Item 3 -->
+            <div class="audio-item">
+                <h3>Hörspiel | Fantasy</h3>
+                <p class="audio-description">Atmosphärische Charakterstimmen</p>
+                <div class="custom-player" data-audio="hoerspiel.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
+                </div>
+            </div>
+
+            <!-- Weitere Audio-Items hier einfügen -->
         </div>
     </section>
 
@@ -564,38 +546,17 @@
             });
         });
 
-        // Karussell-Logik
-        const carousel = document.querySelector('.audio-carousel');
-        const items = document.querySelectorAll('.audio-item');
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
-        
-        let currentIndex = 0;
-        const itemWidth = items[0].offsetWidth + 48; // 48px = gap + margin
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            
-            // Animation für sichtbare Items
-            items.forEach((item, index) => {
-                const isVisible = index >= currentIndex && index < currentIndex + 3;
-                item.style.opacity = isVisible ? 1 : 0;
-                item.style.transform = isVisible ? 'translateY(0)' : 'translateY(30px)';
+        const audioItems = document.querySelectorAll('.audio-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }
+        }, { threshold: 0.1 });
 
-        nextBtn.addEventListener('click', () => {
-            if(currentIndex < items.length - 3) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if(currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
+        audioItems.forEach(item => {
+            observer.observe(item);
         });
 
         // Initiale Positionierung

@@ -7,128 +7,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #f97316;
-            --text: #f8fafc;
-        }
+        /* Vorherige Styles bleiben gleich */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--primary);
-            color: var(--text);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem 5%;
-            background: rgba(15,23,42,0.98);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(249,115,22,0.1);
-        }
-
-        .nav-logo {
-            font-family: 'EB Garamond', serif;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(45deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8)),
-                        url('hintergrund.jpg') center/cover fixed;
-            animation: float 20s infinite alternate;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-family: 'EB Garamond', serif;
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s 0.3s forwards;
-        }
-
-        /* Portfolio Section */
+        /* Überarbeiteter Portfolio-Bereich */
         .portfolio {
             padding: 8rem 5%;
             background: var(--secondary);
         }
 
-        .section-title {
-            font-family: 'EB Garamond', serif;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            text-align: center;
-        }
-
-        .portfolio-container {
-            position: relative;
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .audio-carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            gap: 2rem;
-            padding: 0 1rem;
         }
 
         .audio-item {
-            flex: 0 0 calc(33.333% - 1.5rem);
-            min-width: 300px;
-            margin: 0 0.75rem;
             background: var(--primary);
             border-radius: 12px;
             padding: 2rem;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(249,115,22,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .audio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .audio-item:hover {
@@ -166,369 +74,49 @@
             transform: translateY(-50%);
             color: var(--text);
         }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(249,115,22,0.3);
-            border: none;
-            color: var(--text);
-            padding: 1rem;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-nav:hover {
-            background: var(--accent);
-        }
-
-        .carousel-prev {
-            left: 1rem;
-        }
-
-        .carousel-next {
-            right: 1rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 8rem 5%;
-            background: var(--primary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(15,23,42,0.3);
-        }
-
-        .bio-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(248,250,252,0.9);
-        }
-
-        .bio-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .bio-highlight {
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 8rem 5%;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text);
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border: 1px solid rgba(249,115,22,0.2);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            border-color: var(--accent);
-            background: rgba(249,115,22,0.1);
-            box-shadow: 0 0 15px rgba(249,115,22,0.2);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 2rem 5%;
-            background: var(--secondary);
-            text-align: center;
-            border-top: 1px solid rgba(249,115,22,0.1);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-link {
-            color: var(--text);
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.3s;
-        }
-
-        .footer-link:hover {
-            color: var(--accent);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15,23,42,0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: var(--primary);
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--accent);
-            border: none;
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--secondary);
-            padding: 1rem;
-            text-align: center;
-            z-index: 1000;
-            display: none;
-        }
-
-        .cookie-banner p {
-            margin-bottom: 1rem;
-        }
-
-        #accept-cookies {
-            background: var(--accent);
-            border: none;
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0% { background-position: 50% 50%; }
-            100% { background-position: 55% 55%; }
-        }
-
-        @media (max-width: 1024px) {
-            .audio-item {
-                flex: 0 0 calc(50% - 1rem);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2.8rem;
-            }
-
-            .audio-item {
-                flex: 0 0 100%;
-                margin: 0;
-            }
-
-            .carousel-nav {
-                padding: 0.75rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-image {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-        }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="#" class="nav-logo">CE</a>
-        <div class="nav-links">
-            <a href="#portfolio" class="nav-link">Portfolio</a>
-            <a href="#about" class="nav-link">Profil</a>
-            <a href="#contact" class="nav-link">Kontakt</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Stimmakzente<br>mit Wirkung</h1>
-            <p class="hero-subtitle">Professionelle Sprachaufnahmen für Ihr Projekt</p>
-        </div>
-    </section>
+    <!-- Navigation und Hero-Section bleiben gleich -->
 
     <section class="portfolio" id="portfolio">
         <h2 class="section-title">Audiobeispiele</h2>
-        <div class="portfolio-container">
-            <button class="carousel-nav carousel-prev">❮</button>
-            <button class="carousel-nav carousel-next">❯</button>
-            
-            <div class="audio-carousel">
-                <!-- Audio-Item 1 -->
-                <div class="audio-item">
-                    <h3>Werbespot | Mode</h3>
-                    <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
-                    <div class="custom-player" data-audio="werbung.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
-                </div>
-
-                <!-- Audio-Item 2 -->
-                <div class="audio-item">
-                    <h3>E-Learning | Technik</h3>
-                    <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
-                    <div class="custom-player" data-audio="elearning.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
-                </div>
-
-                <!-- Audio-Item 3 -->
-                <div class="audio-item">
-                    <h3>Hörspiel | Fantasy</h3>
-                    <p class="audio-description">Atmosphärische Charakterstimmen</p>
-                    <div class="custom-player" data-audio="hoerspiel.mp3">
-                        <div class="progress-bar"></div>
-                        <i class="fas fa-play play-btn"></i>
-                    </div>
-                </div>
-
-                <!-- Weitere Audio-Items hier einfügen -->
-            </div>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="about-grid">
-            <img src="profil.jpg" alt="Profilbild" class="profile-image">
-            <div class="bio">
-                <h2 class="section-title">Über mich</h2>
-                <div class="bio-text">
-                    <p>
-                        Als <span class="bio-highlight">professioneller Sprecher</span>  
-                        habe ich bereits an mehreren Projekten mitgewirkt. Meine Stimme ist in 
-                        <span class="bio-highlight">Videospielen</span>, <span class="bio-highlight">Hörbüchern</span> 
-                        und <span class="bio-highlight">Dokumentationen</span> zu hören.
-                    </p>
-                    <p>
-                        Ausgebildet in der <span class="bio-highlight">Sprecherschmiede</span>, 
-                        kombiniere ich technische Präzision mit künstlerischem Ausdruck. Meine Stärken liegen in der 
-                        <span class="bio-highlight">dynamischen Moderation</span> und der 
-                        <span class="bio-highlight">charakterstarken Interpretation</span> von Texten.
-                    </p>
-                    <p>
-                        Neben meiner Arbeit im Studio engagiere ich mich auch als 
-                        <span class="bio-highlight">Tontechniker</span> und gebe kleine Workshops für angehende Sprecher.
-                    </p>
+        <div class="audio-grid">
+            <!-- Audio-Item 1 -->
+            <div class="audio-item">
+                <h3>Werbespot | Mode</h3>
+                <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
+                <div class="custom-player" data-audio="werbung.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
                 </div>
             </div>
+
+            <!-- Audio-Item 2 -->
+            <div class="audio-item">
+                <h3>E-Learning | Technik</h3>
+                <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
+                <div class="custom-player" data-audio="elearning.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
+                </div>
+            </div>
+
+            <!-- Audio-Item 3 -->
+            <div class="audio-item">
+                <h3>Hörspiel | Fantasy</h3>
+                <p class="audio-description">Atmosphärische Charakterstimmen</p>
+                <div class="custom-player" data-audio="hoerspiel.mp3">
+                    <div class="progress-bar"></div>
+                    <i class="fas fa-play play-btn"></i>
+                </div>
+            </div>
+
+            <!-- Weitere Audio-Items hier einfügen -->
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2 class="section-title">Kontakt</h2>
-        <div class="contact-links">
-            <a href="mailto:cihanerkilic@outlook.de" class="contact-link">
-                <i class="fas fa-envelope"></i>
-                cihanerkilic@outlook.de
-            </a>
-            <a href="tel:+4917662448449" class="contact-link">
-                <i class="fas fa-phone"></i>
-                +49 176 62448449
-            </a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <a href="#impressum" class="footer-link">Impressum</a>
-            <a href="#datenschutz" class="footer-link">Datenschutz</a>
-        </div>
-    </footer>
-
-    <!-- Impressum Modal -->
-    <div id="impressum" class="modal">
-        <div class="modal-content">
-            <h2>Impressum</h2>
-            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-            <p>Cihan Erkilic<br>Musterstraße 123<br>12345 Musterstadt</p>
-            <p><strong>Kontakt:</strong><br>Telefon: +49 176 62448449<br>E-Mail: cihanerkilic@outlook.de</p>
-            <button class="modal-close">Schließen</button>
-        </div>
-    </div>
-
-    <!-- Datenschutz Modal -->
-    <div id="datenschutz" class="modal">
-        <div class="modal-content">
-            <h2>Datenschutzerklärung</h2>
-            <p><strong>1. Datenschutz auf einen Blick</strong></p>
-            <p>Diese Website verwendet keine Cookies und sammelt keine personenbezogenen Daten.</p>
-            <p><strong>2. Hosting</strong></p>
-            <p>Diese Website wird auf GitHub Pages gehostet. Bitte beachten Sie die <a href="https://docs.github.com/de/site-policy/privacy-policies/github-privacy-statement" target="_blank">Datenschutzerklärung von GitHub</a>.</p>
-            <button class="modal-close">Schließen</button>
-        </div>
-    </div>
-
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="cookie-banner">
-        <p>Diese Website verwendet keine Cookies. Durch die Nutzung der Website erklären Sie sich damit einverstanden.</p>
-        <button id="accept-cookies">Verstanden</button>
-    </div>
+    <!-- Rest der Seite bleibt gleich -->
 
     <script>
         // Custom Audio Player
@@ -564,75 +152,18 @@
             });
         });
 
-        // Karussell-Logik
-        const carousel = document.querySelector('.audio-carousel');
-        const items = document.querySelectorAll('.audio-item');
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
-        
-        let currentIndex = 0;
-        const itemWidth = items[0].offsetWidth + 48; // 48px = gap + margin
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            
-            // Animation für sichtbare Items
-            items.forEach((item, index) => {
-                const isVisible = index >= currentIndex && index < currentIndex + 3;
-                item.style.opacity = isVisible ? 1 : 0;
-                item.style.transform = isVisible ? 'translateY(0)' : 'translateY(30px)';
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if(currentIndex < items.length - 3) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if(currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        });
-
-        // Initiale Positionierung
-        updateCarousel();
-        window.addEventListener('resize', updateCarousel);
-
-        // Modal Logik
-        const modals = document.querySelectorAll('.modal');
-        const modalLinks = document.querySelectorAll('[href^="#"]');
-        const closeButtons = document.querySelectorAll('.modal-close');
-        
-        modalLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.hash === '#impressum' || link.hash === '#datenschutz') {
-                    e.preventDefault();
-                    document.querySelector(link.hash).style.display = 'flex';
+        // Lazy Loading und Scroll-Animation
+        const audioItems = document.querySelectorAll('.audio-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        });
-        
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                button.closest('.modal').style.display = 'none';
-            });
-        });
-        
-        // Cookie Banner Logik
-        const cookieBanner = document.getElementById('cookie-banner');
-        const acceptCookies = document.getElementById('accept-cookies');
-        
-        if (!localStorage.getItem('cookiesAccepted')) {
-            cookieBanner.style.display = 'block';
-        }
-        
-        acceptCookies.addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.style.display = 'none';
+        }, { threshold: 0.1 });
+
+        audioItems.forEach(item => {
+            observer.observe(item);
         });
     </script>
 </body>

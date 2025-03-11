@@ -622,22 +622,28 @@
 
         // Modal Logik
         const modals = document.querySelectorAll('.modal');
-        const modalLinks = document.querySelectorAll('[href^="#"]');
+        const modalLinks = document.querySelectorAll('.footer-link');
         const closeButtons = document.querySelectorAll('.modal-close');
-        
+                
         modalLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                if (link.hash === '#impressum' || link.hash === '#datenschutz') {
-                    e.preventDefault();
-                    document.querySelector(link.hash).style.display = 'flex';
-                }
+                e.preventDefault(); // Verhindert das Standardverhalten des Links
+                const target = link.getAttribute('href'); // Holt das Ziel-Modal (z.B. #impressum)
+                document.querySelector(target).style.display = 'flex'; // Öffnet das Modal
             });
         });
         
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
-                button.closest('.modal').style.display = 'none';
+                button.closest('.modal').style.display = 'none'; // Schließt das Modal
             });
+        });
+        
+        // Schließen des Modals, wenn außerhalb geklickt wird
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
         });
         
         // Cookie Banner Logik

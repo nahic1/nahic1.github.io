@@ -616,15 +616,11 @@
             observer.observe(item);
         });
 
-        // Initiale Positionierung
-        updateCarousel();
-        window.addEventListener('resize', updateCarousel);
-
         // Modal Logik
         const modals = document.querySelectorAll('.modal');
         const modalLinks = document.querySelectorAll('.footer-link');
         const closeButtons = document.querySelectorAll('.modal-close');
-                
+
         modalLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault(); // Verhindert das Standardverhalten des Links
@@ -632,13 +628,19 @@
                 document.querySelector(target).style.display = 'flex'; // Öffnet das Modal
             });
         });
-        
+
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 button.closest('.modal').style.display = 'none'; // Schließt das Modal
             });
         });
-        
+
+        // Schließen des Modals, wenn außerhalb geklickt wird
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
         // Schließen des Modals, wenn außerhalb geklickt wird
         window.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) {

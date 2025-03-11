@@ -30,4 +30,37 @@ document.addEventListener("DOMContentLoaded", function() {
             this.style.backgroundColor = '#fff';
         });
     });
+
+    // Modal Logik
+    const modals = document.querySelectorAll('.modal');
+    const modalLinks = document.querySelectorAll('[href^="#"]');
+    const closeButtons = document.querySelectorAll('.modal-close');
+
+    modalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (link.hash === '#impressum' || link.hash === '#datenschutz') {
+                e.preventDefault();
+                document.querySelector(link.hash).style.display = 'flex';
+            }
+        });
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.closest('.modal').style.display = 'none';
+        });
+    });
+    
+    // Cookie Banner Logik
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookies = document.getElementById('accept-cookies');
+    
+    if (!localStorage.getItem('cookiesAccepted')) {
+        cookieBanner.style.display = 'block';
+    }
+    
+    acceptCookies.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieBanner.style.display = 'none';
+    });
 });

@@ -106,15 +106,24 @@
             text-align: center;
         }
 
-        .audio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
+        .portfolio-container {
+            position: relative;
             max-width: 1200px;
             margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .audio-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+            padding: 0 1rem;
         }
 
         .audio-item {
+            flex: 0 0 calc(33.333% - 1.5rem);
+            min-width: 300px;
+            margin: 0 0.75rem;
             background: var(--primary);
             border-radius: 12px;
             padding: 2rem;
@@ -150,6 +159,41 @@
             transition: width 0.1s linear;
         }
 
+        .play-btn {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(249,115,22,0.3);
+            border: none;
+            color: var(--text);
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-nav:hover {
+            background: var(--accent);
+        }
+
+        .carousel-prev {
+            left: 1rem;
+        }
+
+        .carousel-next {
+            right: 1rem;
+        }
+
+        /* About Section */
         .about {
             padding: 8rem 5%;
             background: var(--primary);
@@ -185,14 +229,6 @@
             font-weight: 500;
         }
 
-        .play-btn {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text);
-        }
-
         /* Contact Section */
         .contact {
             padding: 8rem 5%;
@@ -224,47 +260,6 @@
             box-shadow: 0 0 15px rgba(249,115,22,0.2);
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0% { background-position: 50% 50%; }
-            100% { background-position: 55% 55%; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2.8rem;
-            }
-
-            .audio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-image {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-        }
-
         /* Footer */
         .footer {
             padding: 2rem 5%;
@@ -272,23 +267,23 @@
             text-align: center;
             border-top: 1px solid rgba(249,115,22,0.1);
         }
-        
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .footer-link {
             color: var(--text);
             text-decoration: none;
             margin: 0 1rem;
             transition: color 0.3s;
         }
-        
+
         .footer-link:hover {
             color: var(--accent);
         }
-        
+
         /* Modal */
         .modal {
             display: none;
@@ -302,7 +297,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             background: var(--primary);
             padding: 2rem;
@@ -311,7 +306,7 @@
             width: 90%;
             position: relative;
         }
-        
+
         .modal-close {
             position: absolute;
             top: 1rem;
@@ -323,7 +318,7 @@
             border-radius: 8px;
             cursor: pointer;
         }
-        
+
         /* Cookie Banner */
         .cookie-banner {
             position: fixed;
@@ -336,11 +331,11 @@
             z-index: 1000;
             display: none;
         }
-        
+
         .cookie-banner p {
             margin-bottom: 1rem;
         }
-        
+
         #accept-cookies {
             background: var(--accent);
             border: none;
@@ -348,6 +343,54 @@
             padding: 0.5rem 1rem;
             border-radius: 8px;
             cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { background-position: 50% 50%; }
+            100% { background-position: 55% 55%; }
+        }
+
+        @media (max-width: 1024px) {
+            .audio-item {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .audio-item {
+                flex: 0 0 100%;
+                margin: 0;
+            }
+
+            .carousel-nav {
+                padding: 0.75rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -370,32 +413,42 @@
 
     <section class="portfolio" id="portfolio">
         <h2 class="section-title">Audiobeispiele</h2>
-        <div class="audio-grid">
-            <div class="audio-item">
-                <h3>Werbespot | Mode</h3>
-                <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
-                <div class="custom-player" data-audio="werbung.mp3">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
+        <div class="portfolio-container">
+            <button class="carousel-nav carousel-prev">❮</button>
+            <button class="carousel-nav carousel-next">❯</button>
+            
+            <div class="audio-carousel">
+                <!-- Audio-Item 1 -->
+                <div class="audio-item">
+                    <h3>Werbespot | Mode</h3>
+                    <p class="audio-description">Dynamische Stimme für Fashion-Kampagne</p>
+                    <div class="custom-player" data-audio="werbung.mp3">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                    </div>
                 </div>
-            </div>
 
-            <div class="audio-item">
-                <h3>E-Learning | Technik</h3>
-                <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
-                <div class="custom-player" data-audio="elearning.mp3">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
+                <!-- Audio-Item 2 -->
+                <div class="audio-item">
+                    <h3>E-Learning | Technik</h3>
+                    <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
+                    <div class="custom-player" data-audio="elearning.mp3">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                    </div>
                 </div>
-            </div>
 
-            <div class="audio-item">
-                <h3>Hörspiel | Fantasy</h3>
-                <p class="audio-description">Atmosphärische Charakterstimmen</p>
-                <div class="custom-player" data-audio="hoerspiel.mp3">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
+                <!-- Audio-Item 3 -->
+                <div class="audio-item">
+                    <h3>Hörspiel | Fantasy</h3>
+                    <p class="audio-description">Atmosphärische Charakterstimmen</p>
+                    <div class="custom-player" data-audio="hoerspiel.mp3">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                    </div>
                 </div>
+
+                <!-- Weitere Audio-Items hier einfügen -->
             </div>
         </div>
     </section>
@@ -427,15 +480,14 @@
         </div>
     </section>
 
-
     <section class="contact" id="contact">
         <h2 class="section-title">Kontakt</h2>
         <div class="contact-links">
-            <a href="mailto:kontakt@beispiel.de" class="contact-link">
+            <a href="mailto:cihanerkilic@outlook.de" class="contact-link">
                 <i class="fas fa-envelope"></i>
                 cihanerkilic@outlook.de
             </a>
-            <a href="tel:+49123456789" class="contact-link">
+            <a href="tel:+4917662448449" class="contact-link">
                 <i class="fas fa-phone"></i>
                 +49 176 62448449
             </a>
@@ -449,34 +501,34 @@
         </div>
     </footer>
 
-<!-- Impressum Modal -->
-<div id="impressum" class="modal">
-    <div class="modal-content">
-        <h2>Impressum</h2>
-        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-        <p>Cihan Erkilic<br>Musterstraße 123<br>12345 Musterstadt</p>
-        <p><strong>Kontakt:</strong><br>Telefon: +49 176 62448449<br>E-Mail: cihanerkilic@outlook.de</p>
-        <button class="modal-close">Schließen</button>
+    <!-- Impressum Modal -->
+    <div id="impressum" class="modal">
+        <div class="modal-content">
+            <h2>Impressum</h2>
+            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            <p>Cihan Erkilic<br>Musterstraße 123<br>12345 Musterstadt</p>
+            <p><strong>Kontakt:</strong><br>Telefon: +49 176 62448449<br>E-Mail: cihanerkilic@outlook.de</p>
+            <button class="modal-close">Schließen</button>
+        </div>
     </div>
-</div>
 
-<!-- Datenschutz Modal -->
-<div id="datenschutz" class="modal">
-    <div class="modal-content">
-        <h2>Datenschutzerklärung</h2>
-        <p><strong>1. Datenschutz auf einen Blick</strong></p>
-        <p>Diese Website verwendet keine Cookies und sammelt keine personenbezogenen Daten.</p>
-        <p><strong>2. Hosting</strong></p>
-        <p>Diese Website wird auf GitHub Pages gehostet. Bitte beachten Sie die <a href="https://docs.github.com/de/site-policy/privacy-policies/github-privacy-statement" target="_blank">Datenschutzerklärung von GitHub</a>.</p>
-        <button class="modal-close">Schließen</button>
+    <!-- Datenschutz Modal -->
+    <div id="datenschutz" class="modal">
+        <div class="modal-content">
+            <h2>Datenschutzerklärung</h2>
+            <p><strong>1. Datenschutz auf einen Blick</strong></p>
+            <p>Diese Website verwendet keine Cookies und sammelt keine personenbezogenen Daten.</p>
+            <p><strong>2. Hosting</strong></p>
+            <p>Diese Website wird auf GitHub Pages gehostet. Bitte beachten Sie die <a href="https://docs.github.com/de/site-policy/privacy-policies/github-privacy-statement" target="_blank">Datenschutzerklärung von GitHub</a>.</p>
+            <button class="modal-close">Schließen</button>
+        </div>
     </div>
-</div>
 
-<!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner">
-    <p>Diese Website verwendet keine Cookies. Durch die Nutzung der Website erklären Sie sich damit einverstanden.</p>
-    <button id="accept-cookies">Verstanden</button>
-</div>    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Diese Website verwendet keine Cookies. Durch die Nutzung der Website erklären Sie sich damit einverstanden.</p>
+        <button id="accept-cookies">Verstanden</button>
+    </div>
 
     <script>
         // Custom Audio Player
@@ -512,21 +564,43 @@
             });
         });
 
-        // Scroll Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        // Karussell-Logik
+        const carousel = document.querySelector('.audio-carousel');
+        const items = document.querySelectorAll('.audio-item');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        
+        let currentIndex = 0;
+        const itemWidth = items[0].offsetWidth + 48; // 48px = gap + margin
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            
+            // Animation für sichtbare Items
+            items.forEach((item, index) => {
+                const isVisible = index >= currentIndex && index < currentIndex + 3;
+                item.style.opacity = isVisible ? 1 : 0;
+                item.style.transform = isVisible ? 'translateY(0)' : 'translateY(30px)';
             });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if(currentIndex < items.length - 3) {
+                currentIndex++;
+                updateCarousel();
+            }
         });
 
-        document.querySelectorAll('.audio-item').forEach(item => {
-            item.style.opacity = 0;
-            item.style.transform = 'translateY(30px)';
-            observer.observe(item);
+        prevBtn.addEventListener('click', () => {
+            if(currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
         });
+
+        // Initiale Positionierung
+        updateCarousel();
+        window.addEventListener('resize', updateCarousel);
 
         // Modal Logik
         const modals = document.querySelectorAll('.modal');

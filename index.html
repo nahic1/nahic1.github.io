@@ -71,16 +71,30 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             padding: 0 5%;
-            background: linear-gradient(45deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8)),
-                        url('hintergrund.jpg') center/cover fixed;
-            animation: float 20s infinite alternate;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transform: scale(1.1);
+            transition: transform 0.5s ease-out;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.2);
         }
 
         .hero-content {
+            position: relative;
             max-width: 800px;
+            transform: translateZ(30px);
         }
 
         .hero-title {
@@ -91,6 +105,49 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1s 0.3s forwards;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+        }
+        
+       .hero-cta {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--text);
+            border: 2px solid var(--accent);
+        }
+
+        .cta-secondary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            background: transparent;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(249,115,22,0.3);
         }
 
         /* Portfolio Section */
@@ -392,9 +449,21 @@
     </nav>
 
     <section class="hero">
+        <img src="hintergrund.jpg" alt="Studio-Hintergrund" class="hero-bg" id="hero-bg">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Visionäre Worte<br>mit Wirkung</h1>
             <p class="hero-subtitle">Professionelle Sprachaufnahmen für Ihr Projekt</p>
+            <div class="hero-cta">
+                <a href="#portfolio" class="cta-btn cta-primary">
+                    <i class="fas fa-headphones"></i>
+                    Portfolio
+                </a>
+                <a href="#contact" class="cta-btn cta-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Kontakt
+                </a>
+            </div>
         </div>
     </section>
 
@@ -659,6 +728,40 @@
         acceptCookies.addEventListener('click', () => {
             localStorage.setItem('cookiesAccepted', 'true');
             cookieBanner.style.display = 'none';
+        });
+
+        // Parallax Hintergrund-Effekt
+        const heroBg = document.getElementById('hero-bg');
+        let requestId;
+
+        const handleMouseMove = (e) => {
+            if (window.innerWidth > 768) { // Nur auf Desktop
+                const speed = 15;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                
+                heroBg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.1)`;
+            }
+        };
+
+        const resetPosition = () => {
+            heroBg.style.transform = 'translate3d(0,0,0) scale(1.1)';
+        };
+        
+        // Event Listener
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', resetPosition);
+        window.addEventListener('resize', resetPosition);
+
+        // Smooth Scroll für alle Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
         });
     </script>
 </body>

@@ -2,11 +2,12 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Cihan Erkilic | Professioneller Sprecher</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+
         :root {
             --primary: #0f172a;
             --secondary: #1e293b;
@@ -22,13 +23,30 @@
         }
 
         body {
+            position: relative;
+            max-width: 100vw;
             font-family: 'Manrope', sans-serif;
             background: var(--primary);
             color: var(--text);
             line-height: 1.8;
             overflow-x: hidden;
         }
+        
+        html {
+            overflow-x: hidden;
+        }
 
+        .nav, .portfolio, .about, .contact {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .nav, .portfolio, .about, .contact, .hero {
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+    
         /* Navigation */
         .nav {
             position: fixed;
@@ -171,13 +189,6 @@
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-       .audio-carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            gap: 2rem;
-            padding: 0 1rem;
         }
 
         .audio-item {
@@ -400,6 +411,25 @@
         @media (max-width: 1024px) {
             .audio-item {
                 flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media screen and (max-width: 412px) and (min-height: 800px) {
+            /* S24+ Viewport Fix */
+            .hero-content {
+                transform: scale(0.98);
+                padding: 0 15px;
+            }
+            
+            .audio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .hero-bg {
+                will-change: transform;
+                backface-visibility: hidden;
+                transform: translateZ(0);
             }
         }
 

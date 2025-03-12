@@ -7,6 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        .nav {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 5%;
+            }
+        }
+        
         :root {
             --primary: #0f172a;
             --secondary: #1e293b;
@@ -766,6 +780,32 @@
         if (isMobile) {
             heroBg.style.transform = 'scale(1.05)';
         }
+
+        // Mobile Navigation Hide/Show on Scroll
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+        const mobileBreakpoint = 768;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const isMobile = window.innerWidth <= mobileBreakpoint;
+        
+            if (isMobile) {
+                if (currentScroll > lastScroll && currentScroll > 100) {
+                    // Scroll down
+                    nav.classList.add('nav-hidden');
+                } else if (currentScroll < lastScroll - 5) {
+                    // Scroll up
+                    nav.classList.remove('nav-hidden');
+                }
+                
+                // Reset navigation at top of page
+                if (currentScroll < 10) {
+                    nav.classList.remove('nav-hidden');
+                }
+            }
+            lastScroll = currentScroll;
+        });
     </script>
 </body>
 </html>

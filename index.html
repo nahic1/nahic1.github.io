@@ -732,37 +732,41 @@
 
         // Parallax Hintergrund-Effekt
         const heroBg = document.getElementById('hero-bg');
-        let requestId;
-
-        const handleMouseMove = (e) => {
-            if (window.innerWidth > 768) { // Nur auf Desktop
-                const speed = 15;
-                const x = (window.innerWidth - e.pageX * speed) / 100;
-                const y = (window.innerHeight - e.pageY * speed) / 100;
+        let isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        const handleMove = (e) => {
+            if (!isMobile) {
+                const speed = 8; // Bewegung reduziert
+                const x = (e.clientX * speed) / 1000;
+                const y = (e.clientY * speed) / 1000;
                 
-                heroBg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.1)`;
+                heroBg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.03)`;
             }
         };
 
         const resetPosition = () => {
-            heroBg.style.transform = 'translate3d(0,0,0) scale(1.1)';
+            heroBg.style.transform = 'translate3d(0,0,0) scale(1)';
         };
-        
-        // Event Listener
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('scroll', resetPosition);
-        window.addEventListener('resize', resetPosition);
 
-        // Smooth Scroll für alle Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
+        let lastCall = 0;
+        window.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastCall > 50) { // Auf 20 FPS begrenzt
+                handleMove(e);
+                lastCall = now;
+            }
         });
+        
+        window.addEventListener('scroll', resetPosition);
+        window.addEventListener('resize', () => {
+            isMobile = window.matchMedia("(max-width: 768px)").matches;
+            resetPosition();
+        });
+
+        // Mobile Fallback
+        if (isMobile) {
+            heroBg.style.transform = 'scale(1.05)';
+        }
     </script>
 </body>
 </html>

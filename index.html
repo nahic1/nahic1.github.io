@@ -112,7 +112,7 @@
             height: 100%;
             z-index: -1;
             object-fit: cover;
-            filter: brightness(0.9);
+            filter: brightness(1);
             transform: scale(1);
             transition: transform 0.3s ease-out;
         }
@@ -306,19 +306,10 @@
             background: var(--primary);
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            max-width: 1200px;
+        .about-content {
+            max-width: 800px;
             margin: 0 auto;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(15,23,42,0.3);
+            text-align: center;
         }
 
         .bio-text {
@@ -502,13 +493,8 @@
                 flex: 0 0 100%;
                 margin: 0;
             }
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .profile-image {
-                max-width: 300px;
-                margin: 0 auto;
+            .about-content {
+                padding: 0 1rem;
             }
             .contact-links {
                 flex-direction: column;
@@ -653,34 +639,31 @@
     </section>
 
     <section class="about" id="about">
-        <div class="about-grid">
-            <img src="profil.webp" alt="Porträt von Cihan Erkilic im professionellen Setting" class="profile-image" loading="lazy">
-            <div class="bio">
-                <h2 class="section-title">Über mich</h2>
-                <div class="bio-text">
-                    <p>
-                        Als <span class="bio-highlight">professionell ausgebildeter Sprecher</span> mit Abschluss 
-                        der <span class="bio-highlight">Sprecherschmiede</span> bringe ich frischen Schwung und modernste 
-                        Aufnahmetechniken in jedes Projekt. Mein Fokus liegt auf präziser Artikulation und 
-                        emotionaler Authentizität – ob für Werbung, Hörbücher oder Unternehmenspräsentationen.
-                    </p>
-                    <p>
-                        Durch meine Ausbildung verfüge ich über fundierte Kenntnisse in:
-                        <br>
-                        <span class="bio-highlight">• Studioaufnahmetechnik</span>
-                        <br>
-                        <span class="bio-highlight">• Atem- und Stimmführung</span>
-                        <br>
-                        <span class="bio-highlight">• Textinterpretation & Character Acting</span>
-                    </p>
-                    <p>
-                        Ich arbeite mit Leidenschaft an der perfekten Balance zwischen klarer Verständlichkeit 
-                        und natürlicher Ausdruckskraft. Aktuell spezialisiere ich mich auf die Bereiche 
-                        <span class="bio-highlight">E-Learning-Produktionen</span> und 
-                        <span class="bio-highlight">kreative Werbevoiceovers</span>.
-                    </p>
+        <div class="about-content">
+            <h2 class="section-title">Über mich</h2>
+            <div class="bio-text">
+                <p>
+                    Als <span class="bio-highlight">professionell ausgebildeter Sprecher</span> mit Abschluss 
+                    der <span class="bio-highlight">Sprecherschmiede</span> bringe ich frischen Schwung und modernste 
+                    Aufnahmetechniken in jedes Projekt. Mein Fokus liegt auf präziser Artikulation und 
+                    emotionaler Authentizität – ob für Werbung, Hörbücher oder Unternehmenspräsentationen.
+                </p>
+                <p>
+                    Durch meine Ausbildung verfüge ich über fundierte Kenntnisse in:
+                    <br>
+                    <span class="bio-highlight">• Studioaufnahmetechnik</span>
+                    <br>
+                    <span class="bio-highlight">• Atem- und Stimmführung</span>
+                    <br>
+                    <span class="bio-highlight">• Textinterpretation & Character Acting</span>
+                </p>
+                <p>
+                    Ich arbeite mit Leidenschaft an der perfekten Balance zwischen klarer Verständlichkeit 
+                    und natürlicher Ausdruckskraft. Aktuell spezialisiere ich mich auf die Bereiche 
+                    <span class="bio-highlight">E-Learning-Produktionen</span> und 
+                    <span class="bio-highlight">kreative Werbevoiceovers</span>.
+                </p>
                 </div>
-            </div>
         </div>
     </section>
 

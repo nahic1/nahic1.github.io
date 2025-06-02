@@ -112,7 +112,7 @@
             height: 100%;
             z-index: -1;
             object-fit: cover;
-            filter: brightness(1);
+            filter: brightness(0.9);
             transform: scale(1);
             transition: transform 0.3s ease-out;
         }
@@ -193,6 +193,38 @@
             animation: fadeUp 0.8s forwards;
         }
 
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: var(--text);
+            border: 1px solid rgba(249,115,22,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: var(--font-size-sm);
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .audio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -223,8 +255,14 @@
         }
 
         .audio-description {
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             color: rgba(248,250,252,0.8);
+        }
+
+        .audio-subcategory {
+            font-size: var(--font-size-sm);
+            color: var(--accent);
+            margin-bottom: 0.5rem;
         }
 
         .custom-player {
@@ -484,6 +522,15 @@
                 padding: 1rem;
                 font-size: 0.9rem;
             }
+            .tab-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
             .audio-item, .contact-link, .cta-btn {
                 max-width: 100%;
                 margin-left: auto;
@@ -526,32 +573,80 @@
 
     <section class="portfolio" id="portfolio">
         <h2 class="section-title">Audiobeispiele</h2>
-        <div class="audio-grid">
-            <div class="audio-item">
-                <h3>Synchronisation</h3>
-                <p class="audio-description">Zweifelhafte Cartoon-Figur</p>
-                <div class="custom-player" data-audio="demo_zweifel.mp3" role="button" tabindex="0" aria-label="Synchronisation Audio abspielen oder pausieren">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
-                    <span class="time-display">0:00 / 0:00</span>
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="synchron" role="tab" aria-selected="true" aria-controls="synchron-panel">Synchron</button>
+            <button class="tab-btn" data-tab="hoerspiel" role="tab" aria-selected="false" aria-controls="hoerspiel-panel">Hörspiel</button>
+            <button class="tab-btn" data-tab="dokumentation" role="tab" aria-selected="false" aria-controls="dokumentation-panel">Dokumentation</button>
+        </div>
+        <div class="tab-content active" id="synchron-panel">
+            <div class="audio-grid">
+                <div class="audio-item">
+                    <h3>Synchron</h3>
+                    <p class="audio-subcategory">Cartoon</p>
+                    <p class="audio-description">Zweifelhafte Cartoon-Figur</p>
+                    <div class="custom-player" data-audio="demo_zweifel.mp3" role="button" tabindex="0" aria-label="Synchronisation Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
+                </div>
+                <div class="audio-item">
+                    <h3>Synchron</h3>
+                    <p class="audio-subcategory">Film</p>
+                    <p class="audio-description">Dramatische Nebenrolle</p>
+                    <div class="custom-player" data-audio="demo_film.mp3" role="button" tabindex="0" aria-label="Synchron Film Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
                 </div>
             </div>
-            <div class="audio-item">
-                <h3>E-Learning | Technik</h3>
-                <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
-                <div class="custom-player" data-audio="elearning.mp3" role="button" tabindex="0" aria-label="E-Learning Audio abspielen oder pausieren">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
-                    <span class="time-display">0:00 / 0:00</span>
+        </div>
+        <div class="tab-content" id="hoerspiel-panel">
+            <div class="audio-grid">
+                <div class="audio-item">
+                    <h3>Hörspiel</h3>
+                    <p class="audio-subcategory">Fantasy</p>
+                    <p class="audio-description">Atmosphärische Charakterstimmen</p>
+                    <div class="custom-player" data-audio="hoerspiel.mp3" role="button" tabindex="0" aria-label="Hörspiel Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
+                </div>
+                <div class="audio-item">
+                    <h3>Hörspiel</h3>
+                    <p class="audio-subcategory">Krimi</p>
+                    <p class="audio-description">Spannende Erzählerstimme</p>
+                    <div class="custom-player" data-audio="hoerspiel_krimi.mp3" role="button" tabindex="0" aria-label="Hörspiel Krimi Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
                 </div>
             </div>
-            <div class="audio-item">
-                <h3>Hörspiel | Fantasy</h3>
-                <p class="audio-description">Atmosphärische Charakterstimmen</p>
-                <div class="custom-player" data-audio="hoerspiel.mp3" role="button" tabindex="0" aria-label="Hörspiel Audio abspielen oder pausieren">
-                    <div class="progress-bar"></div>
-                    <i class="fas fa-play play-btn"></i>
-                    <span class="time-display">0:00 / 0:00</span>
+        </div>
+        <div class="tab-content" id="dokumentation-panel">
+            <div class="audio-grid">
+                <div class="audio-item">
+                    <h3>Dokumentation</h3>
+                    <p class="audio-subcategory">Natur</p>
+                    <p class="audio-description">Informative Erzählerstimme</p>
+                    <div class="custom-player" data-audio="dokumentation_natur.mp3" role="button" tabindex="0" aria-label="Dokumentation Natur Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
+                </div>
+                <div class="audio-item">
+                    <h3>Dokumentation</h3>
+                    <p class="audio-subcategory">Technik</p>
+                    <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
+                    <div class="custom-player" data-audio="elearning.mp3" role="button" tabindex="0" aria-label="Dokumentation Technik Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -703,6 +798,30 @@
         }, { threshold: 0.1 });
 
         audioItems.forEach(item => observer.observe(item));
+
+        // Tab Navigation
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
+                document.getElementById(`${button.dataset.tab}-panel`).classList.add('active');
+            });
+
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    button.click();
+                }
+            });
+        });
 
         // Hamburger Menu
         document.querySelector('.hamburger').addEventListener('click', () => {

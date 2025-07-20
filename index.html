@@ -284,7 +284,7 @@
         }
 
         .play-btn {
-            position: absolute;
+            position: absolutely;
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
@@ -563,6 +563,7 @@
             <button class="tab-btn active" data-tab="synchron" role="tab" aria-selected="true" aria-controls="synchron-panel">Synchron</button>
             <button class="tab-btn" data-tab="hoerspiel" role="tab" aria-selected="false" aria-controls="hoerspiel-panel">Hörspiel</button>
             <button class="tab-btn" data-tab="hörbuch" role="tab" aria-selected="false" aria-controls="hörbuch">Hörbuch</button>
+            <button class="tab-btn" data-tab="dokumentation" role="tab" aria-selected="false" aria-controls="dokumentation-panel">Dokumentation</button>
         </div>
         <div class="tab-content active" id="synchron-panel">
             <div class="audio-grid">
@@ -570,7 +571,7 @@
                     <h3>Synchron</h3>
                     <p class="audio-subcategory">Cartoon</p>
                     <p class="audio-description">Zweifelhafte Cartoon-Figur</p>
-                    <div class="custom-player" data-audio="demo_zweifel.mp3" role="button" tabindex="0" aria-label="Synchronisation Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="demo_zweifel.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -580,7 +581,7 @@
                     <h3>Synchron</h3>
                     <p class="audio-subcategory">Cartoon/Kinderserie</p>
                     <p class="audio-description">Mürrische Nebenrolle</p>
-                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_Kinderserie.mp3" role="button" tabindex="0" aria-label="Synchron Film Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_Kinderserie.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -590,7 +591,7 @@
                     <h3>Lokalisierung</h3>
                     <p class="audio-subcategory">Videospiel</p>
                     <p class="audio-description">Überheblicher Protagonist</p>
-                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_Videospiel.mp3" role="button" tabindex="0" aria-label="Synchron Film Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_Videospiel.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -604,7 +605,7 @@
                     <h3>Hörspiel</h3>
                     <p class="audio-subcategory">Telefonat</p>
                     <p class="audio-description">Hektisch</p>
-                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_hörspiel.mp3" role="button" tabindex="0" aria-label="Hörspiel Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_hörspiel.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -614,7 +615,7 @@
                     <h3>Hörspiel</h3>
                     <p class="audio-subcategory">Krimi</p>
                     <p class="audio-description">Spannende Erzählerstimme</p>
-                    <div class="custom-player" data-audio="hoerspiel_krimi.mp3" role="button" tabindex="0" aria-label="Hörspiel Krimi Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="hoerspiel_krimi.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -628,7 +629,7 @@
                     <h3>Hörbuch</h3>
                     <p class="audio-subcategory">Natur</p>
                     <p class="audio-description">Informative Erzählerstimme</p>
-                    <div class="custom-player" data-audio="dokumentation_natur.mp3" role="button" tabindex="0" aria-label="Hörbuch Natur Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="dokumentation_natur.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>
@@ -638,7 +639,31 @@
                     <h3>Hörbuch</h3>
                     <p class="audio-subcategory">Technik</p>
                     <p class="audio-description">Klare Erklärstimme für Schulungsvideos</p>
-                    <div class="custom-player" data-audio="elearning.mp3" role="button" tabindex="0" aria-label="Dokumentation Technik Audio abspielen oder pausieren">
+                    <div class="custom-player" data-audio="elearning.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="dokumentation-panel">
+            <div class="audio-grid">
+                <div class="audio-item">
+                    <h3>Dokumentation</h3>
+                    <p class="audio-subcategory">Videospiel: Minecraft</p>
+                    <p class="audio-description"></p>
+                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_Doku_Minecraft.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
+                        <div class="progress-bar"></div>
+                        <i class="fas fa-play play-btn"></i>
+                        <span class="time-display">0:00 / 0:00</span>
+                    </div>
+                </div>
+                <div class="audio-item">
+                    <h3>Dokumentation</h3>
+                    <p class="audio-subcategory">Geschichte</p>
+                    <p class="audio-description">Autoritärer Ton für historische Dokumentation</p>
+                    <div class="custom-player" data-audio="demos/CihanErkilic_demo_geschichte.mp3" role="button" tabindex="0" aria-label="Audio abspielen oder pausieren">
                         <div class="progress-bar"></div>
                         <i class="fas fa-play play-btn"></i>
                         <span class="time-display">0:00 / 0:00</span>

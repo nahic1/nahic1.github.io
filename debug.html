@@ -6,6 +6,8 @@
     <title>Cihan Erkilic | Professioneller Sprecher & Voiceover</title>
     <meta name="description" content="Cihan Erkilic - Professioneller Sprecher für Synchron, Hörspiele, E-Learning und Werbung. Buchen Sie hochwertige Sprachaufnahmen!">
     <meta name="keywords" content="Sprecher, Synchronisation, Hörspiel, E-Learning, Werbevoiceover, Cihan Erkilic, Voiceover, Voice, Over, Synchronsprecher">
+    <!-- ACHTUNG: Diese Zeile nur in der preview.html lassen!
+         In der echten index.html muss sie RAUS, sonst verschwindet die Seite aus Google. -->
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Cihan Erkilic | Professioneller Sprecher">
     <meta property="og:type" content="website">
@@ -201,7 +203,7 @@
             box-shadow: 0 5px 15px rgba(249,115,22,0.3);
         }
 
-        /* NEU: bodalgo-Wappen rechts oben im Hero */
+        /* bodalgo-Wappen rechts oben im Hero */
         .hero-seal {
             position: absolute;
             top: 110px;   /* unterhalb der fixen Navigation */
@@ -244,7 +246,7 @@
             padding: 0 0.5rem;
         }
 
-        /* Falls du das offizielle bodalgo-Badge-Bild nutzt: */
+        /* Offizielles bodalgo-Badge-Bild im Wappen */
         .hero-seal img {
             width: 100%;
             height: 100%;
@@ -252,7 +254,7 @@
             border-radius: 50%;
         }
 
-        /* NEU: Vita-Section */
+        /* Vita-Section */
         .vita {
             padding: 8rem 5%;
             background: var(--secondary);
@@ -261,38 +263,40 @@
         .vita-list {
             max-width: 700px;
             margin: 0 auto;
-            list-style: none;
         }
 
-        .vita-item {
-            display: grid;
-            grid-template-columns: 110px 1fr;
-            gap: 2rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(249,115,22,0.15);
-        }
-
-        .vita-item:last-child {
-            border-bottom: none;
-        }
-
-        .vita-year {
+        .vita-group {
             font-family: 'EB Garamond', serif;
             font-size: 1.3rem;
             color: var(--accent);
-            line-height: 1.4;
+            margin: 2.5rem 0 0.5rem;
+            font-weight: 500;
         }
 
-        .vita-entry h3 {
-            font-size: 1.05rem;
+        .vita-group:first-child {
+            margin-top: 0;
+        }
+
+        .vita-entries {
+            list-style: none;
+        }
+
+        .vita-entries li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(249,115,22,0.12);
             font-weight: 700;
-            margin-bottom: 0.2rem;
+            line-height: 1.5;
         }
 
-        .vita-entry p {
-            font-size: 0.95rem;
-            color: rgba(248,250,252,0.75);
-            line-height: 1.6;
+        .vita-entries li:last-child {
+            border-bottom: none;
+        }
+
+        .vita-entries li span {
+            display: block;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: rgba(248,250,252,0.65);
         }
 
         /* Portfolio Section */
@@ -446,7 +450,7 @@
             font-weight: 500;
         }
 
-        /* NEU: Fakten-Karten unter "Über mich" */
+        /* Fakten-Karten unter "Über mich" */
         .facts-grid {
             max-width: 900px;
             margin: 3rem auto 0;
@@ -651,10 +655,6 @@
             .hero-seal span {
                 font-size: 0.5rem;
             }
-            .vita-item {
-                grid-template-columns: 1fr;
-                gap: 0.3rem;
-            }
             .audio-item {
                 flex: 0 0 100%;
                 margin: 0;
@@ -708,7 +708,7 @@
     <section class="hero">
         <img src="ich.jpg" alt="Professionelles Aufnahmestudio mit Mikrofon und dunklem Hintergrund" class="hero-bg" id="hero-bg" loading="lazy">
         <div class="hero-overlay"></div>
-        <a href="https://www.bodalgo.com/de/sprecher/cihan-erkilic?referer=badge" class="hero-seal" rel="noopener" target="_blank">
+        <a href="https://www.bodalgo.com/de/sprecher/cihan-erkilic?referer=badge" class="hero-seal" rel="noopener" target="_blank" aria-label="Mein bodalgo-Profil öffnen">
             <img alt="Professionelle Sprecher" title="Professionelle Werbesprecher" width="100" src="https://www.bodalgo.com/sprecher/badge/cihan-erkilic/2/100">
         </a>
         <div class="hero-content">
@@ -872,7 +872,7 @@
                 <br><span class="bio-highlight">Schreiben Sie mir eine E-Mail!</span>
                 </p>
             </div>
-            <!-- NEU: Fakten-Karten – Texte einfach anpassen -->
+            <!-- Fakten-Karten – Texte einfach anpassen -->
             <div class="facts-grid">
                 <div class="fact-card">
                     <i class="fas fa-microphone-lines"></i>
@@ -893,31 +893,28 @@
         </div>
     </section>
 
-    <!-- NEU: Vita – Einträge unten einfach anpassen/ergänzen (neueste zuerst) -->
+    <!-- Vita – Einträge einfach ergänzen: <li>Titel <span>Zusatzinfo</span></li> -->
     <section class="vita" id="vita">
         <h2 class="section-title">Vita</h2>
-        <ul class="vita-list">
-            <li class="vita-item">
-                <span class="vita-year">Bisherige Projekte</span>
-                <div class="vita-entry">
-                    <h3>Dezember 2024 "Open Mic-Day" bei <b>IYUNO</b> in München</h3>
-                    <h3>Ensemble in einem Videospiel vom Spieleentwickler <b>boomingtech</b></h3>
-                    <h3>Ensemble Rollen im Videospiel "Atomic Heart: Blood on Crystal" bei <b>toneworx GmbH</b></h3>
-                    <h3>Nebenrolle "Angry Polymer" im Videospiel "Atomic Heart: Blood on Crystal" bei <b>toneworx GmbH</b></h3>
-                    <h3>Hörspiel "USS-Wangari" als Chefingenieur Maldeon</h3>
-                    <h3>Hörspiel "Lost in Time" als Norman Galloway</h3>
-                    <!--<p></p>-->
-                </div>
-            </li>
-            <li class="vita-item">
-                <span class="vita-year">Ausbildung & Training</span>
-                <div class="vita-entry">
-                    <h3>Einzelübungsstunden</h3>
-                    <p>Bei Kevin Kasper, Sven Plate, Engelbert von Nordhausen und Esra Vural</p>
-                    <h3>Sprecher Ausbildung bei der Sprecherschmiede</h3>
-                </div>
-            </li>
-        </ul>
+        <div class="vita-list">
+
+            <h3 class="vita-group">Bisherige Projekte</h3>
+            <ul class="vita-entries">
+                <li>Nebenrolle „Angry Polymer" im Videospiel „Atomic Heart: Blood on Crystal" <span>toneworx GmbH</span></li>
+                <li>Ensemble-Rollen im Videospiel „Atomic Heart: Blood on Crystal" <span>toneworx GmbH</span></li>
+                <li>Ensemble in einem Videospiel <span>Spieleentwickler boomingtech</span></li>
+                <li>Hörspiel „USS-Wangari" als Chefingenieur Maldeon</li>
+                <li>Hörspiel „Lost in Time" als Norman Galloway</li>
+            </ul>
+
+            <h3 class="vita-group">Ausbildung &amp; Training</h3>
+            <ul class="vita-entries">
+                <li>Sprecherausbildung <span>Sprecherschmiede</span></li>
+                <li>Einzelübungsstunden <span>bei Kevin Kasper, Sven Plate, Engelbert von Nordhausen und Esra Vural</span></li>
+                <li>„Open Mic-Day" bei IYUNO in München <span>Dezember 2024</span></li>
+            </ul>
+
+        </div>
     </section>
 
     <section class="contact" id="contact">
